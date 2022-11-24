@@ -296,7 +296,7 @@ def load_instruments_for_underlying(underlying_stock_id):
 
 def hedge_vega_position(stock_id, options, stock_value):
     """
-#     This function (once finished) hedges the outstanding vega position by trading options.
+#     This function hedges the outstanding vega position by trading options.
 
 #     That is:
 #         - It calculates how sensitive the total position value is to changes in the underlying asset's volatility by summing up all
@@ -332,16 +332,6 @@ def hedge_vega_position(stock_id, options, stock_value):
     positions = -1*positions[stock_id]*calculate_option_delta(expiry_date=option.expiry, strike=option.strike, 
     option_kind=option.option_kind, stock_value=stock_value, interest_rate=0.03, volatility=3.0)
     
-# def load_instruments_for_underlying(underlying_stock_id):
-#     all_instruments = exchange.get_instruments()
-#     stock = all_instruments[underlying_stock_id]
-#     options = {instrument_id: instrument
-#               for instrument_id, instrument in all_instruments.items()
-#               if instrument.instrument_type == InstrumentType.STOCK_OPTION
-#               and instrument.base_instrument_id == underlying_stock_id}
-#     return stock, options
-
-
 # Load all instruments for use in the algorithm
 STOCK_ID = 'NVDA'
 print(f'STOCK_ID = {STOCK_ID}')
@@ -369,12 +359,8 @@ while True:
                                                                interest_rate=0.03,
                                                                volatility=3.0)
 
-        # A1: Here we ask a fixed credit of 15cts, regardless of what the market circumstances are or which option
-        #  we're quoting. That can be improved. Can you think of something better?
-        
-        # A4: Here we are inserting a volume of 3, only taking into account the position limit of 100 if we reach
-        #  it, are there better choices
-        
+                
+           
         print(f"option.expiry = {option.expiry}")
         update_quotes(option_id=option_id,
                       theoretical_price=theoretical_value,
