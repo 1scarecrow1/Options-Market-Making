@@ -166,7 +166,7 @@ def hedge_delta_position(stock_id, options, stock_value):
         stock_value: float    -  The stock value to assume when making delta calculations using Black-Scholes
     """
 
-    # A2: Calculate the delta position here
+    # Calculate delta position
     positions = exchange.get_positions()  #Each stock unit has a delta of 1 by definition, so the stock delta position is simply equivalent to the stock position
     Total_aggregate_delta_position = positions[stock_id] 
 
@@ -183,7 +183,7 @@ def hedge_delta_position(stock_id, options, stock_value):
     stock_position = positions[stock_id]
     print(f'- The current position in the stock {stock_id} is {stock_position}.')
 
-    # A3: Implement the delta hedge here, staying mindful of the overall position-limit of 100, also for the stocks. 
+    # Implementing delta hedge, taking into account overall position-limit of 100, also for the stocks. 
     #Number of stocks is minus option delta times the stock position
     #stock_position = -1*positions[stock_id]*calculate_option_delta(expiry_date=option.expiry, strike=option.strike, 
     #option_kind=option.option_kind, stock_value=stock_value, interest_rate=0.03, volatility=3.0)
